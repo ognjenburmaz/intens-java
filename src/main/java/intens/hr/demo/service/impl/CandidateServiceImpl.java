@@ -52,7 +52,7 @@ public class CandidateServiceImpl implements CandidateService {
 
 
     @Transactional
-    public Candidate addSkillToCandidate(Long candidateId, String skillName) {
+    public CandidateResponseDTO addSkillToCandidate(Long candidateId, String skillName) {
 
         Candidate candidate = candidateRepo.findById(candidateId)
                 .orElseThrow(() -> new RuntimeException("Candidate not found"));
@@ -66,11 +66,13 @@ public class CandidateServiceImpl implements CandidateService {
 
         candidate.getSkills().add(skill);
 
-        return candidateRepo.save(candidate);
+        Candidate saved = candidateRepo.save(candidate);
+
+        return entityMapper.mapToDTO(saved);
     }
 
     @Transactional
-    public Candidate removeSkillFromCandidate(Long candidateId, String skillName) {
+    public CandidateResponseDTO removeSkillFromCandidate(Long candidateId, String skillName) {
 
         Candidate candidate = candidateRepo.findById(candidateId)
                 .orElseThrow(() -> new RuntimeException("Candidate not found"));
@@ -80,7 +82,9 @@ public class CandidateServiceImpl implements CandidateService {
 
         candidate.getSkills().remove(skill);
 
-        return candidateRepo.save(candidate);
+        Candidate saved = candidateRepo.save(candidate);
+
+        return entityMapper.mapToDTO(saved);
     }
 
     public void deleteCandidate(Long candidateId) {

@@ -10,9 +10,9 @@ public interface CandidateService {
 
     CandidateResponseDTO addCandidate(CandidateRequestDTO dto);
 
-    Candidate addSkillToCandidate(Long candidateId, String skillName);
+    CandidateResponseDTO addSkillToCandidate(Long candidateId, String skillName);
 
-    Candidate removeSkillFromCandidate(Long candidateId, String skillName);
+    CandidateResponseDTO removeSkillFromCandidate(Long candidateId, String skillName);
 
     void deleteCandidate(Long candidateId);
 
