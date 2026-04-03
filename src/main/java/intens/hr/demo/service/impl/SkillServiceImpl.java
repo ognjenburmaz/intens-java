@@ -17,7 +17,7 @@ public class SkillServiceImpl implements SkillService {
         this.skillRepo = skillRepo;
     }
 
-    public Skill addSkill(String name) {
+    public Skill addSkillOrReturnExisting(String name) {
         return skillRepo.findByName(name)
                 .orElseGet(() -> {
                     Skill skill = new Skill();
@@ -26,14 +26,15 @@ public class SkillServiceImpl implements SkillService {
                 });
     }
 
-    public Set<Skill> getSkillsToSet(Set<Skill> skills) {
+    public Set<Skill> getSkillsToSet(Set<String> skillNames) {
 
         Set<Skill> managing = new HashSet<>();
 
-        for (Skill skill : skills) {
-            Skill checking = addSkill(skill.getName());
+        for (String name : skillNames) {
 
-            managing.add(checking);
+            Skill skill = addSkillOrReturnExisting(name.toLowerCase().trim());
+
+            managing.add(skill);
         }
 
         return managing;

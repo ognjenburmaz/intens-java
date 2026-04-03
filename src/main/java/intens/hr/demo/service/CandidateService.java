@@ -1,12 +1,14 @@
 package intens.hr.demo.service;
 
+import intens.hr.demo.dto.CandidateRequestDTO;
+import intens.hr.demo.dto.CandidateResponseDTO;
 import intens.hr.demo.model.Candidate;
 
 import java.util.List;
 
 public interface CandidateService {
 
-    Candidate addCandidate(Candidate candidate);
+    CandidateResponseDTO addCandidate(CandidateRequestDTO dto);
 
     Candidate addSkillToCandidate(Long candidateId, String skillName);
 
@@ -14,9 +16,9 @@ public interface CandidateService {
 
     void deleteCandidate(Long candidateId);
 
-    List<Candidate> searchByName(String name);
+    List<CandidateResponseDTO> getByName(String name);
 
-    List<Candidate> getBySkill(String skillName);
+    List<CandidateResponseDTO> getBySkill(String skillName);
 
-    List<Candidate> getByAllSkills(List<String> skills);
+    List<CandidateResponseDTO> getByAllSkills(List<String> skills);
 }

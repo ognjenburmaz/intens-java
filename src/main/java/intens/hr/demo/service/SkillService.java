@@ -6,7 +6,7 @@ import java.util.Set;
 
 public interface SkillService {
 
-    Skill addSkill(String name);
+    Skill addSkillOrReturnExisting(String name);
 
-    Set<Skill> getSkillsToSet(Set<Skill> skills);
+    Set<Skill> getSkillsToSet(Set<String> skillNames);
 }
