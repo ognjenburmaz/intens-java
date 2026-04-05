@@ -21,7 +21,7 @@ public class SkillServiceImpl implements SkillService {
         return skillRepo.findByName(name)
                 .orElseGet(() -> {
                     Skill skill = new Skill();
-                    skill.setName(skill.getName().toLowerCase().trim());
+                    skill.setName(name.toLowerCase().trim());
                     return skillRepo.save(skill);
                 });
     }
